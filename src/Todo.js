@@ -18,7 +18,20 @@ function Todo() {
       let filteredItems = items.filter((it)=>{return it.id != item.id})
       setItems(filteredItems)
   }
+  function clearItems(){
+    setItems([])
+  }
 
+  function onDone(item){
+    let updatedItems = items.map(it=>{
+      
+        if(it.id === item.id){
+          it.done = !it.done
+        }
+        return it
+    })
+    setItems(updatedItems)
+  }
   
 
   return (
@@ -27,7 +40,7 @@ function Todo() {
       <h1>Todo list</h1>
       <TodoForm onAddItemProp={onAddItemFunc}></TodoForm>
 
-      <List onItemDeletedProp={onItemDeletedFunc} items={items}></List>
+      <List onDone={onDone} clearItems={clearItems} onItemDeletedProp={onItemDeletedFunc} items={items}></List>
     </div>
   );
 }

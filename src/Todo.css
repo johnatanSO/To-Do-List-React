@@ -1,0 +1,110 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 10vh
+}
+h1{
+    font-size:7vh
+}
+ul{
+    margin-top: 2rem;
+    width: 70%;
+}
+
+li{
+    background-color:white;
+    list-style-type: none;
+    margin-top: 5px;
+    display:flex;
+    justify-content: space-between;
+    padding-left: 7px;
+    transition:0.2s;
+    align-items: center;
+    height:35px;
+    font-size:1.3rem;
+    font-weight: 350;
+    animation: appear 0.6s;
+}
+@keyframes appear {
+    0%{
+        opacity:0;
+        transform:scale(0.8)
+    }
+    50%{
+        transform:scale(1.02)
+    }
+    100%{
+        opacity:1;
+        transform:scale(1)
+    }
+}
+li:hover{
+    transform: scale(1.02);
+}
+.btnDelete{
+    background-color:rgb(252, 89, 89);
+    border: none;
+    width:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.btnDone{
+    background-color:rgb(43, 239, 43);
+    border: none;
+    width:40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+img{
+    width:15px;
+    color:white;
+    opacity: 1
+}
+input{
+    padding:15px;
+    height:100%;
+    width:100%;
+    border: none;
+    font-size:1.3rem
+}
+ input:focus-visible {
+    outline: 1px solid rgb(79, 202, 255);
+    }
+ 
+.add{
+    height:100%;
+    width:92px;
+    border: none;
+    font-size: 2rem;
+    background-color:rgb(79, 202, 255);
+    color: white;
+}
+button{
+    cursor: pointer;
+}
+form{
+    margin-top:5rem;
+    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 70%;
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    height:100%;
+    background-color: blue;
+}

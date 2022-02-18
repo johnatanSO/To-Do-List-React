@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todo.css";
 import List from "./List";
 import Item from './Item'
@@ -15,7 +15,7 @@ function Todo() {
   }
 
   function onItemDeletedFunc(item){
-      let filteredItems = items.filter((it)=>{return it.id != item.id})
+      let filteredItems = items.filter((it)=>{return it.id !== item.id})
       setItems(filteredItems)
   }
   function clearItems(){

@@ -5,7 +5,7 @@ class Item{
 
     constructor(text){
         this.text = text;
-        this.id = Item.lastId++;
+        this.id = (Item.lastId++)+(Math.random()*1000);
         this.done = false;
     }
 }

@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./Todo.css";
 import List from "./List";
 import Item from "./Item";
+import Header from './Header'
 
 const SAVED_ITEMS = "savedItems"
 
+
+
+
 function Todo() {
   const [items, setItems] = useState([]);
+  const [theme, setTheme] = useState(false);
+  const [theme2, setTheme2] = useState(false);
 
   useEffect(() =>{
     let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
-    
     if(savedItems){
       setItems(savedItems)
     }
@@ -18,6 +23,12 @@ function Todo() {
 
   useEffect(() =>{
     localStorage.setItem(SAVED_ITEMS, JSON.stringify(items))
+    if(items.length > 0){
+      document.title = (`(${items.length}) Todo list`)
+    }else{
+      document.title = 'Todo list'
+    }
+    
   },[items])
 
   
@@ -25,6 +36,7 @@ function Todo() {
   function onAddItemFunc(text) {
     let item = new Item(text);
     setItems([...items, item]);
+    
   }
 
   function onItemDeletedFunc(item) {
@@ -47,13 +59,21 @@ function Todo() {
     setItems(updatedItems);
   }
 
+  function onHandleTheme() {
+    setTheme(!theme);
+    console.log(theme)
+}
+
   return (
-    <div className="container">
+    <div className={theme ? "themeBar dark container" : "themeBar container"}>
+
+      <Header theme={theme} onHandleTheme={onHandleTheme}></Header>
       <h1>Todo list</h1>
       <TodoForm onAddItemProp={onAddItemFunc}></TodoForm>
 
       <List
         onDone={onDone}
+        theme={theme}
         clearItems={clearItems}
         onItemDeletedProp={onItemDeletedFunc}
         items={items}

@@ -1,15 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Roboto;
+}
+
+
+.header{
+  display: flex;
+  justify-content:space-between;
+  color: rgb(87,87,87);
+  margin:1rem;
+  width: 97%;
+
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  margin-top: 5vh;
+  width: 100%;
+  height: 100vh;
+  
+
 }
 h1 {
   font-size: 7vh;
@@ -18,6 +32,7 @@ h1 {
   border-bottom: 1px solid rgb(87, 87, 87);
   color: rgb(86, 86, 86);
   padding: 0px 5%;
+  margin-top: 5vh;
 }
 .btnClear {
   align-self: flex-end;
@@ -115,10 +130,18 @@ li:hover {
   width: 100%;
   padding: 0.8rem;
   filter: contrast(0.1);
+  transition: 0.2s;
 }
 .done{
   opacity: 0.4;
   
+}
+.dark {
+  background-color: #2b2d42;
+  color: white;
+}
+.taskList.dark {
+  border: .1rem solid white;
 }
 
 img {
@@ -177,4 +200,58 @@ form:hover {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.theme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 1.5rem;
+  width: 6.4rem;
+  cursor: pointer;
+}
+
+.theme img {
+  width: 1.4rem;
+  margin-right: .2rem;
+}
+
+
+
+
+.theme img:last-child {
+  width: 1.3rem;
+  margin-left: .2rem;
+}
+
+.theme .themeBar {
+  position: relative;
+  width: 5rem;
+  border: .1rem solid #2b2d42;
+  border-radius: 2.5rem;
+}
+
+.theme .themeBar.dark {
+  border: .1rem solid white;
+}
+
+.theme .ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  background: #2b2d42;
+  content: "";
+  -webkit-transition: left 1s;
+  transition: left 1s;
+}
+
+.theme .ball.dark {
+  background: white;
+}
+
+.theme .ball.change {
+  left: calc(100% - 1.3rem);
 }

@@ -5,7 +5,10 @@ import Todo from './Todo.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Todo />
+    
+      <Todo />
+    
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

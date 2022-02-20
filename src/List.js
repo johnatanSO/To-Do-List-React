@@ -14,7 +14,7 @@ function List(props) {
       >
         Clear list
       </button>
-      {props.items.map((item) => {return <ListItem key={item.id} onDone={props.onDone} onItemDeletedProp={props.onItemDeletedProp} item={item}></ListItem>})}
+      {props.items.map((item) => {return <ListItem editItemsProp={props.editItemsProp} key={item.id} onDone={props.onDone} onItemDeletedProp={props.onItemDeletedProp} item={item}></ListItem>})}
     </ul>
   );
 }

@@ -1,8 +1,5 @@
 import React from "react";
 
-
-
-
 function DoneImg(props) {
   if (props.done) {
     return (
@@ -15,36 +12,37 @@ function DoneImg(props) {
   }
 }
 
-
-
-
 function ListItem(props) {
-
   return (
+    <li
+      className={props.item.done ? "done listItem" : " listItem"}
+      id={props.item.id}
+      key={props.item.id}
+    >
+      <div className="itemContent">
+        <button
+          onClick={() => {
+            props.onDone(props.item);
+          }}
+          className="btnDone"
+        >
+          <DoneImg done={props.item.done}></DoneImg>
+        </button>
+        <p>{props.item.text}</p>
+      </div>
 
-        <li className={props.item.done ? "done" : ""} id={props.item.id} key={props.item.id}>
-            <div className="itemContent">
-              <button
-                onClick={() => {
-                  props.onDone(props.item);
-                }}
-                className="btnDone"
-              >
-                <DoneImg done={props.item.done}></DoneImg>
-              </button>
-              <p>{props.item.text}</p>
-            </div>
-
-            <button
-              onClick={() => {
-                props.onItemDeletedProp(props.item);
-              }}
-              className="btnDelete"
-            >
-              <img src="./assets/delete.png" />
-            </button>
-          </li>
-
+      <div className="editAndDelete">
+        <button className="btnEdit" onClick={()=>{props.editItemsProp(props.item)}}><img src="./assets/edit.png" /></button>
+        <button
+          onClick={() => {
+            props.onItemDeletedProp(props.item);
+          }}
+          className="btnDelete"
+        >
+          <img src="./assets/delete.png" />
+        </button>
+      </div>
+    </li>
   );
 }
 

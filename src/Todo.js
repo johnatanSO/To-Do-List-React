@@ -3,6 +3,7 @@ import "./Todo.css";
 import List from "./List";
 import Item from "./Item";
 import Header from './Header'
+import Modal from "./Modal";
 
 const SAVED_ITEMS = "savedItems"
 
@@ -13,6 +14,8 @@ function Todo() {
   const [items, setItems] = useState([]);
   const [theme, setTheme] = useState(false);
   const [theme2, setTheme2] = useState(false);
+  const [itemEdited, setItemEdited] = useState("");
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() =>{
     let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
@@ -39,12 +42,7 @@ function Todo() {
     
   }
 
-  function onItemDeletedFunc(item) {
-    let filteredItems = items.filter((it) => {
-      return it.id !== item.id;
-    });
-    setItems(filteredItems);
-  }
+  
   function clearItems() {
     setItems([]);
   }
@@ -62,7 +60,39 @@ function Todo() {
   function onHandleTheme() {
     setTheme(!theme);
     console.log(theme)
+  }
+
+  function onItemDeletedFunc(item) {
+    let filteredItems = items.filter((it) => {
+      return it.id !== item.id;
+    });
+    setItems(filteredItems);
+  } 
+
+
+
+  function editItemsFunc(item){
+    setShowModal(true)
+     let itemsForEdit = items.map((it) => {
+      if(it.id == item.id){
+        if(items.length > 0){
+          setItemEdited(it)
+        }        
+      }
+    })
+  }
+
+
+
+
+  function onHideModal(e){
+    let target = e.target;
+    if(target.id == 'modal'){
+        setShowModal(false);
+    }
 }
+
+
 
   return (
     <div className={theme ? "themeBar dark container" : "themeBar container"}>
@@ -72,15 +102,27 @@ function Todo() {
       <TodoForm onAddItemProp={onAddItemFunc}></TodoForm>
 
       <List
+        editItemsProp={editItemsFunc}
         onDone={onDone}
         theme={theme}
         clearItems={clearItems}
         onItemDeletedProp={onItemDeletedFunc}
         items={items}
       ></List>
+      {<Modal onHideModal={onHideModal} show={showModal} itemEdited={itemEdited}></Modal>}
     </div>
   );
 }
+
+
+
+
+
+/* TODO FORM */
+
+
+
+
 
 function TodoForm(props) {
   const [text, setText] = useState("");
@@ -99,8 +141,9 @@ function TodoForm(props) {
   }
 
   return (
-    <form>
+    <form className="formAddTask">
       <input
+      className="inputTask"
         placeholder="Add your task"
         onChange={handleChange}
         type="text"

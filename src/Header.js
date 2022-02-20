@@ -8,7 +8,7 @@ function Header(props){
     let mounths = ['January','February','March','April','May','June','July','August','September','October','November','December']
     let date = new Date()
 
-    let today = `${mounths[date.getMonth()+1]} ${date.getDay()}, ${date.getFullYear()}`
+    let today = `${mounths[date.getMonth()+1]} ${date.getDate()}, ${date.getFullYear()}`
 
 
 

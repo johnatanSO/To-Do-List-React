@@ -10,8 +10,11 @@ function Modal(props) {
 
   function onUpdate(event) {
     event.preventDefault();
-    props.onEditItemProp(editItem);
-    setEditItem("");
+    if(editItem){
+      props.onEditItemProp(editItem);
+      setEditItem("");
+    }
+    
   }
 
   return (

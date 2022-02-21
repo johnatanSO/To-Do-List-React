@@ -2,49 +2,30 @@ import React, { useState, useEffect } from "react";
 import "./Todo.css";
 import List from "./List";
 import Item from "./Item";
-import Header from './Header'
+import Header from "./Header";
 import Modal from "./Modal";
 
-const SAVED_ITEMS = "savedItems"
-
-
-
+const SAVED_ITEMS = "savedItems";
 
 function Todo() {
   const [items, setItems] = useState([]);
-  const [item, setItem] = useState("")
-  
+
   const [theme, setTheme] = useState(false);
-  const [theme2, setTheme2] = useState(false);
   const [itemEdited, setItemEdited] = useState("");
-  
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() =>{
+  useEffect(() => {
     let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
-    if(savedItems){
-      setItems(savedItems)
+    if (savedItems) {
+      setItems(savedItems);
     }
-  },[])
-
-  useEffect(() =>{
-    localStorage.setItem(SAVED_ITEMS, JSON.stringify(items))
-    if(items.length > 0){
-      document.title = (`(${items.length}) Todo list`)
-    }else{
-      document.title = 'Todo list'
-    }
-    
-  },[items])
-
-  
+  }, []);
 
   function onAddItemFunc(text) {
     let item = new Item(text);
     setItems([...items, item]);
   }
 
-  
   function clearItems() {
     setItems([]);
   }
@@ -61,7 +42,7 @@ function Todo() {
 
   function onHandleTheme() {
     setTheme(!theme);
-    console.log(theme)
+    console.log(theme);
   }
 
   function onItemDeletedFunc(item) {
@@ -69,53 +50,50 @@ function Todo() {
       return it.id !== item.id;
     });
     setItems(filteredItems);
-  } 
-
-
-
-   function editItemsFunc(item){
-    setShowModal(true)
-     let itemsForEdit = items.map((it) => {
-      if(it.id == item.id){
-        if(items.length > 0){
-          setItemEdited(it)
-        }        
-      }
-    })
   }
 
-
-   function onEditItemFunc(itemText){
-
-    console.log(itemText)
-    let updatedItems = [...items].map(()=>{
-
-    })
-    /* setItemEdited(prevState => ({ ...prevState, text: itemText }));
-    items.map((it)=>{
-      if(it.id==itemEdited.id){
-        console.log(itemEdited.text)
-        console.log(it.text)
-        
+  function editItemsFunc(item) {
+    setShowModal(true);
+    items.map((it) => {
+      if (it.id === item.id) {
+        if (items.length > 0) {
+          setItemEdited(it);
+        }
       }
-    })   */
-  }  
+      return it
+    });
+  }
 
+  function onEditItemFunc(itemText) {
+    items.map((it) => {
+      if (itemEdited.id === it.id) {
+        it.text = itemText;
+      }
+      setItems([...items]);
+      return it;
+    });
+    setItemEdited("");
+    setShowModal(false);
+  }
 
-
-
-  function onHideModal(e){
+  function onHideModal(e) {
     let target = e.target;
-    if(target.id == 'modal'){
-        setShowModal(false);
+    if (target.id === "modal") {
+      setShowModal(false);
     }
-}
+  }
 
-
+  useEffect(() => {
+    localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
+    if (items.length > 0) {
+      document.title = `(${items.length}) Todo list`;
+    } else {
+      document.title = "Todo list";
+    }
+  }, [items]);
 
   return (
     <div className={theme ? "themeBar dark container" : "themeBar container"}>
-
       <Header theme={theme} onHandleTheme={onHandleTheme}></Header>
       <h1>Todo list</h1>
       <TodoForm onAddItemProp={onAddItemFunc}></TodoForm>
@@ -128,20 +106,20 @@ function Todo() {
         onItemDeletedProp={onItemDeletedFunc}
         items={items}
       ></List>
-      {<Modal items={items} onEditItemProp={onEditItemFunc} onHideModal={onHideModal} show={showModal} itemEdited={itemEdited}></Modal>}
+      {
+        <Modal
+          items={items}
+          onEditItemProp={onEditItemFunc}
+          onHideModal={onHideModal}
+          show={showModal}
+          itemEdited={itemEdited}
+        ></Modal>
+      }
     </div>
   );
 }
 
-
-
-
-
 /* TODO FORM */
-
-
-
-
 
 function TodoForm(props) {
   const [text, setText] = useState("");
@@ -162,7 +140,7 @@ function TodoForm(props) {
   return (
     <form className="formAddTask">
       <input
-      className="inputTask"
+        className="inputTask"
         placeholder="Add your task"
         onChange={handleChange}
         type="text"

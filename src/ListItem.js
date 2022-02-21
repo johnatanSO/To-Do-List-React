@@ -28,18 +28,25 @@ function ListItem(props) {
         >
           <DoneImg done={props.item.done}></DoneImg>
         </button>
-        <p>{props.item.text}</p>
+        {props.item.text}
       </div>
 
       <div className="editAndDelete">
-        <button className="btnEdit" onClick={()=>{props.editItemsProp(props.item)}}><img src="./assets/edit.png" /></button>
+        <button
+          className="btnEdit"
+          onClick={() => {
+            props.editItemsProp(props.item);
+          }}
+        >
+          <img alt="editItem" src="./assets/edit.png"/>
+        </button>
         <button
           onClick={() => {
             props.onItemDeletedProp(props.item);
           }}
           className="btnDelete"
         >
-          <img src="./assets/delete.png" />
+          <img alt="delete" src="./assets/delete.png" />
         </button>
       </div>
     </li>

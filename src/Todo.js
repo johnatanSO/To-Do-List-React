@@ -12,9 +12,12 @@ const SAVED_ITEMS = "savedItems"
 
 function Todo() {
   const [items, setItems] = useState([]);
+  const [item, setItem] = useState("")
+  
   const [theme, setTheme] = useState(false);
   const [theme2, setTheme2] = useState(false);
   const [itemEdited, setItemEdited] = useState("");
+  
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() =>{
@@ -39,7 +42,6 @@ function Todo() {
   function onAddItemFunc(text) {
     let item = new Item(text);
     setItems([...items, item]);
-    
   }
 
   
@@ -71,7 +73,7 @@ function Todo() {
 
 
 
-  function editItemsFunc(item){
+   function editItemsFunc(item){
     setShowModal(true)
      let itemsForEdit = items.map((it) => {
       if(it.id == item.id){
@@ -81,6 +83,23 @@ function Todo() {
       }
     })
   }
+
+
+   function onEditItemFunc(itemText){
+
+    console.log(itemText)
+    let updatedItems = [...items].map(()=>{
+
+    })
+    /* setItemEdited(prevState => ({ ...prevState, text: itemText }));
+    items.map((it)=>{
+      if(it.id==itemEdited.id){
+        console.log(itemEdited.text)
+        console.log(it.text)
+        
+      }
+    })   */
+  }  
 
 
 
@@ -109,7 +128,7 @@ function Todo() {
         onItemDeletedProp={onItemDeletedFunc}
         items={items}
       ></List>
-      {<Modal onHideModal={onHideModal} show={showModal} itemEdited={itemEdited}></Modal>}
+      {<Modal items={items} onEditItemProp={onEditItemFunc} onHideModal={onHideModal} show={showModal} itemEdited={itemEdited}></Modal>}
     </div>
   );
 }

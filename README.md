@@ -8,6 +8,7 @@
  <li>Editar item</li>
  <li>Marcar como completo</li>
  <li>Excluir item</li>
+ <liUm botão para limpar a lista</li>
  <br>
  
  <h2>🖼 Imagem da tela principal: </h2>

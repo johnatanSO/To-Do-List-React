@@ -95,7 +95,7 @@ function Todo() {
   return (
     <div className={theme ? "themeBar dark container" : "themeBar container"}>
       <Header theme={theme} onHandleTheme={onHandleTheme}></Header>
-      <h1>Todo list</h1>
+      <h1>To-do list</h1>
       <TodoForm onAddItemProp={onAddItemFunc}></TodoForm>
 
       <List

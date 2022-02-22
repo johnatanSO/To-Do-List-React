@@ -2,7 +2,7 @@
 
 <h3> 💻 Sobre o projeto</h3>
 
-<p>Essa é uma Todo List (CRUD) feita com o objetivo de treinar a biblioteca ReactJS.</p>
+<p>Essa é uma To-do List (CRUD) feita com o objetivo de treinar a biblioteca ReactJS.</p>
 <p>📝 O sistema possui as funcionalidades de:</p>
  <li>Adicionar item na lista</li>
  <li>Editar item</li>

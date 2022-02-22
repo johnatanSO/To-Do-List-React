@@ -1,4 +1,4 @@
-<h1 align="center"📑 Sistema Escolar</h1>
+<h1 align="center"> 📑 Sistema Escolar</h1>
 
 <h3> 💻 Sobre o projeto</h3>
 

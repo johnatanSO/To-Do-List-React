@@ -17,7 +17,7 @@
 <img width="80%" src="public/assets/images-for-readme/edit-task.png">
  
  <h2>🖼 Imagem dos itens completos: </h2>
-<img width="80%" src="public/assets/images-for-readme/task-done.png">
+<img width="80%" src="public/assets/images-for-readme/tasks-done.png">
   
 
 <h2>🚀 Tecnologias utilizadas: </h2>
@@ -33,10 +33,10 @@
 <h3>Entre com o seguinte link: </h3>
 <a href="https://to-do-list-react-bice.vercel.app/">https://to-do-list-react-bice.vercel.app/</a>
 <h3>Ou</h3>
-<li> Clone o repositório com: git clone https://github.com/johnatanSO/to-do-list"
+<li> Clone o repositório com: git clone https://github.com/johnatanSO/to-do-list
 <li> Entre em uma IDE de sua preferência
-<li> Execute o npm install parainstalar as dependências
-<li> Execute o npm start parainiciar o servidor local
+<li> Execute o npm install para instalar as dependências
+<li> Execute o npm start para iniciar o servidor local
 
 <br>
  

@@ -9,7 +9,7 @@ import '../styles/globals.scss'
 
 const SAVED_ITEMS = 'savedItems'
 
-interface Item {
+export interface Item {
   id: number
   text: string
   done: boolean
@@ -17,9 +17,7 @@ interface Item {
 
 export function App() {
   const [items, setItems] = useState<Item[]>([])
-  const [itemDataToEdit, setItemDataToEdit] = useState<Item | undefined>(
-    undefined,
-  )
+  const [itemDataToEdit, setItemDataToEdit] = useState<Item>(undefined as any)
   const [showModal, setShowModal] = useState<boolean>(false)
 
   useEffect(() => {
@@ -94,7 +92,7 @@ export function App() {
       </button>
 
       <ul>
-        {items?.map((item: any) => {
+        {items?.map((item) => {
           return (
             <ListItem
               handleDeleteItem={handleDeleteItem}

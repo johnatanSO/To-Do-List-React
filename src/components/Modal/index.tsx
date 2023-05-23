@@ -1,12 +1,25 @@
 import { useState } from 'react'
+import { Item } from '../../App'
 
-export function Modal({ itemDataToEdit, onHideModal, items, setItems }: any) {
+interface ModalProps {
+  itemDataToEdit: Item
+  items: Item[]
+  onHideModal: (event: any) => void
+  setItems: (items: Item[]) => void
+}
+
+export function Modal({
+  itemDataToEdit,
+  onHideModal,
+  items,
+  setItems,
+}: ModalProps) {
   const [item, setItem] = useState(itemDataToEdit)
 
   function onUpdate(event: any) {
     event.preventDefault()
-    const newItems = items.map((it: any) => {
-      if (it.id === item.id) it.text = item.text
+    const newItems = items.map((it) => {
+      if (it.id === item?.id) it.text = item.text
       return it
     })
     setItems(newItems)
@@ -22,7 +35,7 @@ export function Modal({ itemDataToEdit, onHideModal, items, setItems }: any) {
               setItem({ ...item, text: event.target.value })
             }}
             className="editTaskInput"
-            value={item.text}
+            value={item?.text}
             type="text"
           />
           <button onClick={onUpdate} className="btnUpdate">

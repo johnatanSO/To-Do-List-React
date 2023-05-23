@@ -3,7 +3,11 @@ import style from './InputTask.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export function InputTask({ onAddItem }: any) {
+interface InputTaskProps {
+  onAddItem: (text: string) => void
+}
+
+export function InputTask({ onAddItem }: InputTaskProps) {
   const [text, setText] = useState('')
   const [error, setError] = useState<boolean>(false)
 

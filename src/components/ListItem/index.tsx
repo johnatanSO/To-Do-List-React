@@ -6,13 +6,21 @@ import {
   faCheck,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import { Item } from '../../App'
+
+interface ListItemProps {
+  item: Item
+  handleDone: (item: Item) => void
+  handleEditItem: (item: Item) => void
+  handleDeleteItem: (item: Item) => void
+}
 
 export function ListItem({
   item,
   handleDone,
   handleEditItem,
   handleDeleteItem,
-}: any) {
+}: ListItemProps) {
   return (
     <li className={style.listItem}>
       <FontAwesomeIcon

@@ -1,0 +1,9 @@
+@import "../../../styles/colors.module.scss";
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  color: $gray-color-300;
+  margin: 1rem;
+  width: 97%;
+}

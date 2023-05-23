@@ -1,0 +1,48 @@
+@import '../../../styles/colors.module.scss';
+
+.formAddTask {
+  margin-top: 3rem;
+  display: flex;
+  width: 70%;
+  border-radius: 8px;
+
+  input {
+    flex: 1;
+    padding: 9px 15px;
+    font-size: 1.1rem;
+    color: $gray-color-500;
+    background-color: $gray-color-200;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    outline: none;
+    border: 2px solid $gray-color-200;
+    transition: border 0.2s;
+    border-right: none;
+
+    &:focus {
+      border: 2px solid $blue-light;
+      border-right: none;
+    }
+  }
+
+  button {
+    width: 3rem;
+    cursor: pointer;
+    background-color: $blue-light;
+    border: 2px solid $blue-light;
+    color: $white-color;
+    transition: filter 0.2s;
+    border: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    &:not(:disabled):hover {
+      filter: brightness(0.8);
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background: $red-light;
+      border-color: $red-light
+    }
+  }
+}

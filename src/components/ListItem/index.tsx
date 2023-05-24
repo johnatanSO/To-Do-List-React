@@ -12,6 +12,7 @@ interface ListItemProps {
   item: Item
   handleDone: (item: Item) => void
   handleEditItem: (item: Item) => void
+  handleOpenDetailsItem: (item: Item) => void
   handleDeleteItem: (item: Item) => void
 }
 
@@ -19,6 +20,7 @@ export function ListItem({
   item,
   handleDone,
   handleEditItem,
+  handleOpenDetailsItem,
   handleDeleteItem,
 }: ListItemProps) {
   return (
@@ -33,7 +35,12 @@ export function ListItem({
       <span className={item.done ? style.donedText : ''}>{item?.text}</span>
 
       <div className={style.actions}>
-        <button className={style.detailsButton} onClick={() => {}}>
+        <button
+          className={style.detailsButton}
+          onClick={() => {
+            handleOpenDetailsItem(item)
+          }}
+        >
           <FontAwesomeIcon icon={faInfoCircle} />
         </button>
 

@@ -19,20 +19,31 @@
   .iconDoned,
   .iconDone {
     padding: 0px 10px;
+    transition: color .2s;
     cursor: pointer;
   }
   .iconDoned {
     color: rgb(24, 194, 41);
   }
   .iconDone {
-    color: $gray-color-200
+    color: $gray-color-200;
+
+    &:hover{
+      color: rgba(24, 194, 41, 0.383);
+    }
   }
 
   span {
-    line-height: 1;
+    color: $gray-color-300;
     font-weight: 500;
     font-size: 1.1rem;
-    color: $gray-color-300
+    
+    max-width: 60%;
+    display: block;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .donedText {

@@ -1,0 +1,103 @@
+@import '../../../styles/colors.module.scss';
+
+.overlay{
+  inset: 0;
+  position: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.2);
+
+  .modalContent{
+    background: $white-color;
+    box-shadow: 1px 5px 10px rgba(0,0,0,0.15);
+
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 40%;
+    gap: 10px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: fadeIn .2s;
+
+
+    header{
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      color: $gray-color-400;
+
+      .closeIcon{
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: filter .2s;
+        color: $red-light;
+
+        &:hover{
+          filter: brightness(.8);
+        }
+      }
+    }
+
+    input{
+      background: $gray-color-200;
+      border: 2px solid transparent;
+      outline: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: 500;
+      color: $gray-color-400;
+      transition: border .2s;
+      
+      &:focus{
+        border: 2px solid $blue-light;
+      }
+      &:hover{
+        filter: brightness(.95);
+      }
+    }
+
+    button[type="submit"]{
+      background: $blue-light;
+      color: $white-color;
+      box-shadow: 1px 3px 7px rgba(0,0,0,0.2);
+
+      border: none;
+      border-radius: 10px;
+      padding: 15px 0px;
+      font-weight: 500;
+
+      cursor: pointer;
+      transition: filter .2s;
+
+      &:hover{
+        filter: brightness(0.8);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent{
+    width: 85%
+  }  
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}

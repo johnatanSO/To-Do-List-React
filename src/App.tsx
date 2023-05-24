@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Header } from './components/Header'
-import { Modal } from './components/Modal'
+import { ModalEdit } from './components/ModalEdit'
 import { ListItem } from './components/ListItem'
 import { InputTask } from './components/InputTask'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBroom } from '@fortawesome/free-solid-svg-icons'
 import '../styles/globals.scss'
+import { ModalDetails } from './components/ModalDetails'
 
 const SAVED_ITEMS = 'savedItems'
 
@@ -13,12 +14,15 @@ export interface Item {
   id: number
   text: string
   done: boolean
+  createdAt: Date
+  donedDate?: Date
 }
 
 export function App() {
   const [items, setItems] = useState<Item[]>([])
   const [itemDataToEdit, setItemDataToEdit] = useState<Item>(undefined as any)
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const [showModalEdit, setShowModalEdit] = useState<boolean>(false)
+  const [showModalDetails, setShowModalDetails] = useState<boolean>(false)
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS) || '[]')
@@ -32,6 +36,7 @@ export function App() {
       id: (items?.length + 1) * (Math.random() * 1000),
       done: false,
       text,
+      createdAt: new Date(),
     }
     setItems((currentItems) => [...currentItems, newItem])
   }
@@ -44,6 +49,7 @@ export function App() {
     const updatedItems = items.map((it) => {
       if (it.id === item.id) {
         it.done = !it.done
+        it.donedDate = new Date()
       }
       return it
     })
@@ -58,14 +64,21 @@ export function App() {
   }
 
   function handleEditItem(item: Item) {
-    setShowModal(true)
+    setShowModalEdit(true)
+    setItemDataToEdit(item)
+  }
+
+  function handleOpenDetailsItem(item: Item) {
+    console.log('open detais')
+    setShowModalDetails(true)
     setItemDataToEdit(item)
   }
 
   function onHideModal(event: any) {
     const target = event.target
     if (target.id === 'modal') {
-      setShowModal(false)
+      setShowModalEdit(false)
+      setShowModalDetails(false)
     }
   }
 
@@ -86,10 +99,12 @@ export function App() {
 
       <InputTask onAddItem={onAddItem} />
 
-      <button className="clearButton" onClick={handleClearItems}>
-        <FontAwesomeIcon icon={faBroom} />
-        Limpar
-      </button>
+      {items?.length > 0 && (
+        <button className="clearButton" onClick={handleClearItems}>
+          <FontAwesomeIcon icon={faBroom} />
+          Limpar
+        </button>
+      )}
 
       <ul>
         {items?.map((item) => {
@@ -97,6 +112,7 @@ export function App() {
             <ListItem
               handleDeleteItem={handleDeleteItem}
               handleEditItem={handleEditItem}
+              handleOpenDetailsItem={handleOpenDetailsItem}
               handleDone={handleDone}
               key={item?.id}
               item={item}
@@ -105,12 +121,24 @@ export function App() {
         })}
       </ul>
 
-      {showModal && (
-        <Modal
+      {showModalEdit && (
+        <ModalEdit
           itemDataToEdit={itemDataToEdit}
           onHideModal={onHideModal}
           items={items}
           setItems={setItems}
+          handleClose={() => {
+            setShowModalEdit(false)
+          }}
+        />
+      )}
+      {showModalDetails && (
+        <ModalDetails
+          handleClose={() => {
+            setShowModalDetails(false)
+          }}
+          onHideModal={onHideModal}
+          itemDetails={itemDataToEdit}
         />
       )}
     </div>

@@ -1,0 +1,87 @@
+@import '../../../styles/colors.module.scss';
+
+.overlay{
+  inset: 0;
+  position: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.2);
+
+  .modalContent{
+    background: $white-color;
+    box-shadow: 1px 5px 10px rgba(0,0,0,0.15);
+
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 40%;
+    gap: 10px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: fadeIn .2s;
+
+
+    header{
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      color: $gray-color-400;
+
+      .closeIcon{
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: filter .2s;
+        color: $red-light;
+
+        &:hover{
+          filter: brightness(.8);
+        }
+      }
+    }
+
+    .fieldsContainer{
+      background: $gray-color-100;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .field{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $gray-color-500;
+
+        span{
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent{
+    width: 85%
+  }  
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
